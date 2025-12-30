@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Market Analysis: Home Services Roll-Up Strategy&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chart.js --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Color Palette: Electric Teal &amp; Deep Navy --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!--<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>Palette Name: Electric Insight</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Background: #F0F4F8 (Alice Blue)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Card Bg: #FFFFFF (White)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Primary Text: #0F172A (Slate 900)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Accent Blue: #2563EB (Royal Blue)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Accent Teal: #0D9488 (Teal 600) - Represents "Greenfield"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Warning/PE: #F59E0B (Amber)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Chart Color 1: #3B82F6</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Chart Color 2: #14B8A6</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F0F4F8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #0F172A;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Chart Container Styling - Responsive &amp; Constrained */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 100%; /* Constraints handled by grid/parent */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 40vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 450px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container-tall {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 50vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem; /* rounded-xl */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1, h2, h3 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #0F172A;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.gradient-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, #2563EB, #0D9488);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.metric-badge {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.25rem 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 9999px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.875rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- NO SVG, NO MERMAID JS USED --&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="p-4 md:p-8 max-w-7xl mx-auto"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- PLAN SUMMARY</p>
+<p class="p1"><span class="Apple-converted-space">        </span>1. Intro/Hook: Define the "Greenfield" opportunity.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>2. Methodology: Donut chart of weights.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>3. Leaderboard: Horizontal Bar of Top 10.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>4. Strategic Matrix: Scatter plot (Frag vs PE).</p>
+<p class="p1"><span class="Apple-converted-space">        </span>5. Deep Dive: Radar chart comparison.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>6. Economics: Grouped Bar (Growth vs Labor).</p>
+<p class="p1"><span class="Apple-converted-space">        </span>7. Conclusion: Text summary.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- HEADER SECTION --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="mb-12 text-center md:text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-teal-700 uppercase bg-teal-100 rounded-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Internal Research Strategy</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>The &lt;span class="gradient-text"&gt;Greenfield Hunt&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-xl text-slate-600 max-w-3xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Targeting US home services markets (HVAC, Plumbing, Electrical) ripe for consolidation.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>We analyzed 10 mid-sized metros (300k-1M pop) to find the "Goldilocks Zone":<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>high fragmentation, low private equity saturation, and stable economic growth.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- KEY INSIGHTS / EXECUTIVE SUMMARY --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card border-l-4 border-teal-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-lg font-bold text-slate-500 uppercase mb-2"&gt;Top Recommendation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-3xl font-extrabold text-slate-900 mb-1"&gt;Fort Wayne, IN&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-slate-600"&gt;Score: 88/100. The ultimate "Sleepy Giant." Massive fragmentation, virtually zero institutional capital presence, and robust SBA lending activity.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card border-l-4 border-blue-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-lg font-bold text-slate-500 uppercase mb-2"&gt;Runner Up&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-3xl font-extrabold text-slate-900 mb-1"&gt;Spokane, WA&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-slate-600"&gt;Score: 86/100. Geographic isolation creates a natural moat. Strong exit comps despite distance from Seattle.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card border-l-4 border-amber-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-lg font-bold text-slate-500 uppercase mb-2"&gt;Market to Avoid&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-3xl font-extrabold text-slate-900 mb-1"&gt;Colorado Springs&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-slate-600"&gt;Score: 72/100. Too hot. Saturated with private equity searchers and platform acquirers driving up multiples.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 1: METHODOLOGY --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold mb-4"&gt;The Evaluation Engine&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-slate-600 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>We didn't just guess. We built a weighted composite score based on 8 critical success factors for a roll-up strategy.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-slate-600 font-semibold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Why weighted?</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-slate-600 text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Because &lt;span class="text-teal-600 font-bold"&gt;Fragmentation&lt;/span&gt; and &lt;span class="text-teal-600 font-bold"&gt;PE Avoidance&lt;/span&gt; are the deal-breakers. If a market is consolidated, growth is irrelevant.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:col-span-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="methodologyChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 2: THE LEADERBOARD --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-3xl font-bold mb-2"&gt;Market Rankings&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-slate-600 mb-8 max-w-2xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Ranking the top 10 cities by Composite Score. Fort Wayne and Spokane lead by a significant margin, driven by their "Inverse PE Score" (meaning low competition).</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="chart-container chart-container-tall"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;canvas id="leaderboardChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 3: THE STRATEGIC MATRIX --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold mb-4"&gt;The "Sweet Spot" Matrix&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-slate-600 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>This scatter plot reveals the most attractive targets. We plotted &lt;strong&gt;PE Score (Inverse)&lt;/strong&gt; against &lt;strong&gt;Fragmentation&lt;/strong&gt;.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="space-y-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-2xl mr-3"&gt;💎&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong class="text-slate-900"&gt;Top Right Quadrant (The Gems):&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-slate-600"&gt;High Fragmentation + Low PE Activity. This is where we buy.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-2xl mr-3"&gt;⚠️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong class="text-slate-900"&gt;Bottom Right (The Trap):&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-slate-600"&gt;Low PE activity, but low fragmentation (already consolidated by local giants).&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-2xl mr-3"&gt;🔥&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong class="text-slate-900"&gt;Top Left (The War Zone):&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-slate-600"&gt;Highly fragmented, but PE is already swarming (e.g., Boise, Colorado Springs).&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card bg-slate-50 border border-slate-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 border-b border-slate-100 flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-bold text-slate-700"&gt;Strategic Matrix&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-xs text-slate-400"&gt;Data: Q3 2024 Market Scan&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="matrixChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 4: DEEP DIVE COMPARISON --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-3xl font-bold mb-6 text-center"&gt;Tale of Two Cities&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-center text-slate-600 mb-8 max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Why did Fort Wayne win while Colorado Springs failed? The Radar chart highlights the structural differences. Note the "PE Score" (Inverse) collapse for Colorado Springs.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 lg:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-teal-700"&gt;Fort Wayne, IN&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-slate-500"&gt;The Winner (Score: 88)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="text-sm space-y-2 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Fragmentation:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;92/100 (High)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;PE Quietness:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;95/100 (Very Quiet)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Regulatory:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;92/100 (Protective)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-amber-600"&gt;Colorado Springs, CO&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-slate-500"&gt;The Cautionary Tale (Score: 72)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="text-sm space-y-2 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Fragmentation:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;85/100 (High)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;PE Quietness:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;35/100 (Saturated)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex justify-between border-b pb-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Regulatory:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;65/100 (Moderate)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card mt-8 max-w-3xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="chart-container-tall"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;canvas id="radarChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 5: ECONOMIC FUNDAMENTALS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-2xl font-bold mb-4"&gt;Economic Stability vs. Labor Reality&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-slate-600 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>We don't just need cheap companies; we need markets that are growing and workers we can hire.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;strong&gt;Des Moines&lt;/strong&gt; offers the best balance of Labor Availability (Trade Schools) and Economic Stability.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;canvas id="economicsChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- SECTION 6: RISKS &amp; CONCLUSION --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="bg-slate-900 text-white rounded-2xl p-8 md:p-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-3xl font-bold mb-6"&gt;Strategic Recommendation &amp; Risks&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold text-teal-400 mb-3"&gt;Why Fort Wayne?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-slate-300 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>It represents the ideal asymmetry. High barrier to entry via Master Plumber licensing creates a moat for incumbents. The lack of PE activity means multiples are likely suppressed (3-4x EBITDA vs 5-7x in Boise).</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-slate-800 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;strong class="block text-white mb-2"&gt;Next Steps:&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ol class="list-decimal list-inside text-slate-400 space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Pull list of 58 identified targets ($1M-$5M Rev).&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Initiate proprietary outreach (Direct Mail).&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Engage Lake City Bank for SBA 7(a) pre-approval.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ol&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold text-amber-400 mb-3"&gt;Key Risks&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-3"&gt;⚠️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-slate-300"&gt;&lt;strong&gt;Interest Rate Exposure:&lt;/strong&gt; SBA 7(a) rates are hovering at Prime + 2.5%. Deal flow must support debt service at ~11%.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-3"&gt;⚠️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-slate-300"&gt;&lt;strong&gt;Labor Shortage in Growth Markets:&lt;/strong&gt; Chattanooga (Rank #5) has high growth but wages are inflating rapidly due to VW/Amazon competition.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="mr-3"&gt;⚠️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-slate-300"&gt;&lt;strong&gt;The "Silver Tsunami" Timing:&lt;/strong&gt; Many owners in Fort Wayne are 65+. If we don't act in 12 months, a regional aggregator will emerge.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="mt-12 text-center text-slate-400 text-sm pb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Generated by Canvas Infographics | Data Source: Internal Market Analysis 2024&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- NO SVG, NO MERMAID, NO EXTERNAL CSS FILES --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Palette: Brilliant Blues/Teal --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- JAVASCRIPT LOGIC --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- DATA &amp; CONFIGURATION ---</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Palette Definition</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const colors = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>primary: '#2563EB', // Royal Blue</p>
+<p class="p1"><span class="Apple-converted-space">            </span>teal: '#0D9488',<span class="Apple-converted-space">    </span>// Teal</p>
+<p class="p1"><span class="Apple-converted-space">            </span>amber: '#F59E0B', <span class="Apple-converted-space">  </span>// Amber</p>
+<p class="p1"><span class="Apple-converted-space">            </span>dark: '#0F172A',<span class="Apple-converted-space">    </span>// Slate 900</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lightBlue: '#BFDBFE',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lightTeal: '#99F6E4',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bg: '#F0F4F8'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// City Data (Simulated based on prompt research analysis)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cityData = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Fort Wayne, IN", composite: 88, frag: 92, pe: 95, econ: 75, labor: 80 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Spokane, WA", composite: 86, frag: 90, pe: 85, econ: 78, labor: 75 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Grand Rapids, MI", composite: 85, frag: 88, pe: 80, econ: 82, labor: 78 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Des Moines, IA", composite: 84, frag: 85, pe: 82, econ: 70, labor: 88 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Chattanooga, TN", composite: 82, frag: 78, pe: 75, econ: 90, labor: 65 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Omaha, NE", composite: 80, frag: 75, pe: 78, econ: 85, labor: 82 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Green Bay, WI", composite: 78, frag: 82, pe: 85, econ: 65, labor: 70 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Sioux Falls, SD", composite: 76, frag: 70, pe: 88, econ: 72, labor: 68 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Boise, ID", composite: 75, frag: 85, pe: 45, econ: 95, labor: 50 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Colorado Springs, CO", composite: 72, frag: 85, pe: 35, econ: 88, labor: 55 }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART.JS DEFAULTS &amp; UTILS ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Chart.defaults.font.family = "'Inter', sans-serif";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Chart.defaults.color = '#475569';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Chart.defaults.scale.grid.color = '#E2E8F0';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Label Wrapping Logic (Mandatory)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function wrapLabel(str, maxLen = 16) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (str.length &lt;= maxLen) return str;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const words = str.split(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const lines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentLine = words[0];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 1; i &lt; words.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentLine.length + 1 + words[i].length &lt;= maxLen) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine += ' ' + words[i];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(currentLine);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = words[i];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines.push(currentLine);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Tooltip Callback (Mandatory)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tooltipConfig = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: function(tooltipItems) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const item = tooltipItems[0];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let label = item.chart.data.labels[item.dataIndex];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (Array.isArray(label)) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return label.join(' ');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return label;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART 1: METHODOLOGY (DONUT) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctxMethod = document.getElementById('methodologyChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const methodologyLabels = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"Market Fragmentation (25%)",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>"PE Activity Score (30%)",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>"SBA Lending (15%)",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>"Economic Growth (10%)",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>"Exit Opportunity (10%)",<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>"Labor/Other (10%)"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(ctxMethod, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'doughnut',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: methodologyLabels.map(l =&gt; wrapLabel(l, 20)),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [25, 30, 15, 10, 10, 10],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>colors.teal,<span class="Apple-converted-space">      </span>// Frag</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>colors.primary, <span class="Apple-converted-space">  </span>// PE</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'#60A5FA',<span class="Apple-converted-space">        </span>// SBA</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'#94A3B8',<span class="Apple-converted-space">        </span>// Econ</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'#CBD5E1',<span class="Apple-converted-space">        </span>// Exit</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'#E2E8F0' <span class="Apple-converted-space">        </span>// Other</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 0,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>hoverOffset: 4</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>legend: { position: 'right', labels: { boxWidth: 12 } },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: tooltipConfig,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: { display: true, text: 'Weighted Evaluation Metrics' }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cutout: '60%'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART 2: LEADERBOARD (HORIZONTAL BAR) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctxLeader = document.getElementById('leaderboardChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(ctxLeader, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: cityData.map(c =&gt; c.name), // Names are short enough</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Composite Score (0-100)',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: cityData.map(c =&gt; c.composite),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: cityData.map(c =&gt; c.composite &gt;= 85 ? colors.teal : (c.composite &lt; 75 ? colors.amber : colors.primary)),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderRadius: 4,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>barPercentage: 0.7</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>indexAxis: 'y',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x: { beginAtZero: false, min: 60, max: 100, title: {display: true, text: 'Score'} },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: { grid: { display: false } }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>legend: { display: false },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: tooltipConfig,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: { display: true, text: 'Top 10 Cities: Composite Score Ranking' }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART 3: STRATEGIC MATRIX (SCATTER) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctxMatrix = document.getElementById('matrixChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(ctxMatrix, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'scatter',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Cities',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: cityData.map(c =&gt; ({ x: c.pe, y: c.frag, city: c.name })),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: cityData.map(c =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// High Frag + High PE Score (Low Activity) = Teal (Target)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if(c.frag &gt; 85 &amp;&amp; c.pe &gt; 80) return colors.teal;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// High Frag + Low PE Score (High Activity) = Amber (Danger)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if(c.frag &gt; 80 &amp;&amp; c.pe &lt; 60) return colors.amber;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return colors.primary;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}),</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pointRadius: 8,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pointHoverRadius: 10</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x: {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: { display: true, text: 'Inverse PE Activity Score (Higher = Less Competition)' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>min: 30, max: 100<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: { display: true, text: 'Market Fragmentation Score' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>min: 60, max: 100<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>legend: { display: false },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>title: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>return context[0].raw.city;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>label: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>return `Frag: ${context.raw.y}, PE Safety: ${context.raw.x}`;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>annotation: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Note: Annotation plugin not loaded via simple CDN in this prompt constraints usually,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// so relying on color coding and text description in HTML.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART 4: RADAR COMPARISON ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctxRadar = document.getElementById('radarChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Extract Fort Wayne vs Colorado Springs</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const fw = cityData.find(c =&gt; c.name.includes("Fort Wayne"));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cs = cityData.find(c =&gt; c.name.includes("Colorado"));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(ctxRadar, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'radar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Composite', 'Fragmentation', 'PE Safety (Inverse)', 'Econ Growth', 'Labor Market'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Fort Wayne (Target)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [fw.composite, fw.frag, fw.pe, fw.econ, fw.labor],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fill: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: 'rgba(13, 148, 136, 0.2)', // Teal transparent</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: colors.teal,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointBackgroundColor: colors.teal,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointBorderColor: '#fff',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointHoverBackgroundColor: '#fff',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointHoverBorderColor: colors.teal</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Colorado Springs (Avoid)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [cs.composite, cs.frag, cs.pe, cs.econ, cs.labor],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fill: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: 'rgba(245, 158, 11, 0.2)', // Amber transparent</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: colors.amber,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointBackgroundColor: colors.amber,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointBorderColor: '#fff',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointHoverBackgroundColor: '#fff',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>pointHoverBorderColor: colors.amber</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>elements: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>line: { borderWidth: 3 }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>r: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>angleLines: { display: true },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>suggestedMin: 0,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>suggestedMax: 100</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: { display: true, text: 'Structural Comparison: The Winner vs. The Trap' },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: tooltipConfig</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- CHART 5: ECONOMICS GROUPED BAR ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ctxEcon = document.getElementById('economicsChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Top 5 Cities only</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const top5 = cityData.slice(0, 5);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(ctxEcon, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: top5.map(c =&gt; wrapLabel(c.name, 12)),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Economic Growth Score',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: top5.map(c =&gt; c.econ),</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: colors.primary</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Labor Availability Score',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: top5.map(c =&gt; c.labor),</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: colors.teal</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: { beginAtZero: true, max: 100 }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tooltip: tooltipConfig,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: { display: true, text: 'Growth vs. Labor: Finding the Balance' }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
